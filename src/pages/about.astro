@@ -1,4 +1,7 @@
 ---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
 const pageTitle = "About Me";
 
 const identity = {
@@ -13,6 +16,11 @@ const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
 const happy = true;
 const finished = false;
 const goal = 3;
+
+const skillColor = "crimson";
+const Color = "blue";
+const fontWeight = "3rem";
+const textCase = "uppercase";
 ---
 
 <html lang="en">
@@ -24,10 +32,22 @@ const goal = 3;
         <title>{pageTitle}</title>
     </head>
     <body>
-        <a href="/">Home</a>
-        <a href="/about/">About</a>
-        <a href="/blog/">Blog</a>
+        <Header />
         <h1>{pageTitle}</h1>
+        <style define:vars={{ skillColor, fontWeight, textCase, Color }}>
+            h1 {
+                color: hotpink;
+                font-size: 4rem;
+            }
+            h2 {
+                color: var(--Color);
+            }
+            .skill {
+                color: var(--skillColor);
+                font-weight: var(--fontweight);
+                text-transform: var(--textcase);
+            }
+        </style>
         <h2>... and my new Astro site!</h2>
 
         <p>
@@ -59,7 +79,7 @@ const goal = 3;
         </ul>
         <p>My skills are:</p>
         <ul>
-            {skills.map((skill) => <li>{skill}</li>)}
+            {skills.map((skill) => <li class="skill">{skill}</li>)}
         </ul>
 
         {happy && <p>I am happy to be learning Astro!</p>}
@@ -73,5 +93,7 @@ const goal = 3;
                 <p>My goal is not 3 days.</p>
             )
         }
+
+        <Footer />
     </body>
 </html>
